@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Raster Normalizer
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-inner">
+
+        <div class="logo">
+            Raster<span>Normalizer</span>
+        </div>
+
+        <nav>
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#tool">
+                Tool
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section
+    class="hero"
+    id="home"
+>
+
+    <div class="hero-inner">
+
+        <div class="eyebrow">
+            RASTER PROCESSING TOOL
+        </div>
+
+        <h1>
+            Normalize your
+            <span>raster data.</span>
+        </h1>
+
+        <p>
+            Convert raster values into a standardized
+            0–1 range using Min-Max normalization.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main
+    class="main-container"
+    id="tool"
+>
+
+
+<!-- =====================================================
+     WORKFLOW
+====================================================== -->
+
+<div class="workflow">
+
+    <div class="workflow-item active">
+
+        <span>01</span>
+
+        <div>
+            <strong>
+                Input
+            </strong>
+
+            <small>
+                Upload raster
+            </small>
+        </div>
+
+    </div>
+
+
+    <div class="workflow-line"></div>
+
+
+    <div class="workflow-item">
+
+        <span>02</span>
+
+        <div>
+            <strong>
+                Normalize
+            </strong>
+
+            <small>
+                Scale values
+            </small>
+        </div>
+
+    </div>
+
+
+    <div class="workflow-line"></div>
+
+
+    <div class="workflow-item">
+
+        <span>03</span>
+
+        <div>
+            <strong>
+                Export
+            </strong>
+
+            <small>
+                TIFF / JPG / PDF
+            </small>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     UPLOAD SECTION
+====================================================== -->
+
+<section class="tool-card">
+
+    <div class="section-header">
+
+        <div>
+
+            <div class="section-number">
+                01
+            </div>
+
+            <h2>
+                Upload Raster
+            </h2>
+
+        </div>
+
+        <p>
+            Supported formats:
+            TIF, TIFF, JPG, JPEG, PNG
+        </p>
+
+    </div>
+
+
+    <div
+        class="upload-box"
+        id="uploadBox"
+    >
+
+        <div class="upload-icon">
+            ↑
+        </div>
+
+        <h3>
+            Select your raster
+        </h3>
+
+        <p>
+            GeoTIFF or common image raster
+        </p>
+
+        <button
+            type="button"
+            class="secondary-button"
+            id="browseButton"
+        >
+            Browse files
+        </button>
+
+        <input
+            type="file"
+            id="rasterInput"
+            accept=".tif,.tiff,.jpg,.jpeg,.png"
+            hidden
+        >
+
+    </div>
+
+
+    <div
+        class="file-info"
+        id="fileInfo"
+        style="display:none;"
+    >
+
+        <div class="file-icon">
+            TIFF
+        </div>
+
+        <div class="file-details">
+
+            <strong id="fileName">
+                raster.tif
+            </strong>
+
+            <span id="fileSize">
+                0 MB
+            </span>
+
+        </div>
+
+        <button
+            type="button"
+            class="remove-button"
+            id="removeButton"
+        >
+            Remove
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     METHOD
+====================================================== -->
+
+<section class="tool-card">
+
+    <div class="section-header">
+
+        <div>
+
+            <div class="section-number">
+                02
+            </div>
+
+            <h2>
+                Normalization Method
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="method-card active">
+
+        <div class="method-check">
+            ✓
+        </div>
+
+        <div>
+
+            <h3>
+                Min-Max Normalization
+            </h3>
+
+            <p>
+                Scales all valid raster values between
+                0 and 1 using the minimum and maximum
+                values of each band.
+            </p>
+
+        </div>
+
+        <div class="method-range">
+            0 — 1
+        </div>
+
+    </div>
+
+
+    <button
+        type="button"
+        class="primary-button"
+        id="normalizeButton"
+    >
+
+        <span>
+            Normalize Raster
+        </span>
+
+        <span class="button-arrow">
+            →
+        </span>
+
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     CUSTOM GRID
+====================================================== -->
+
+<section class="tool-card">
+
+    <div class="section-header">
+
+        <div>
+
+            <div class="section-number">
+                03
+            </div>
+
+            <h2>
+                Create Custom Grid
+            </h2>
+
+        </div>
+
+        <p>
+            Enter your own raster cell values.
+        </p>
+
+    </div>
+
+
+    <div class="grid-description">
+
+        X/Y origin represents the
+        <strong>
+            upper-left corner
+        </strong>
+        of the grid.
+        The Y coordinate decreases downward
+        for each row.
+
+    </div>
+
+
+    <div class="grid-settings">
+
+        <div class="field">
+
+            <label>
+                Rows
+            </label>
+
+            <input
+                type="number"
+                id="gridRows"
+                value="5"
+                min="1"
+                max="500"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Columns
+            </label>
+
+            <input
+                type="number"
+                id="gridCols"
+                value="5"
+                min="1"
+                max="500"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Cell Size
+            </label>
+
+            <input
+                type="number"
+                id="cellSize"
+                value="1"
+                min="0.000001"
+                step="any"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                X Origin
+            </label>
+
+            <input
+                type="number"
+                id="xOrigin"
+                value="0"
+                step="any"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Y Origin
+            </label>
+
+            <input
+                type="number"
+                id="yOrigin"
+                value="0"
+                step="any"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                CRS
+            </label>
+
+            <input
+                type="text"
+                id="gridCRS"
+                value="EPSG:4326"
+            >
+
+        </div>
+
+    </div>
+
+
+
+    <div class="grid-heading">
+
+        <div>
+
+            <h3>
+                Enter cell values
+            </h3>
+
+            <p>
+                Leave a cell blank to treat it as NoData.
+            </p>
+
+        </div>
+
+        <div class="grid-actions">
+
+            <button
+                type="button"
+                class="small-button"
+                id="fillExample"
+            >
+                Fill Example
+            </button>
+
+            <button
+                type="button"
+                class="small-button"
+                id="clearGrid"
+            >
+                Clear
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="grid-container"
+        id="gridContainer"
+    ></div>
+
+
+    <button
+        type="button"
+        class="primary-button"
+        id="normalizeGridButton"
+    >
+
+        <span>
+            Normalize Grid
+        </span>
+
+        <span class="button-arrow">
+            →
+        </span>
+
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     RESULT
+====================================================== -->
+
+<section
+    class="result-card"
+    id="resultCard"
+    style="display:none;"
+>
+
+    <div class="result-top">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <div>
+
+            <div class="result-label">
+                COMPLETE
+            </div>
+
+            <h2>
+                Normalization complete
+            </h2>
+
+            <p>
+                Your normalized raster is ready.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Preview -->
+
+    <div class="preview-section">
+
+        <div class="preview-header">
+
+            <h3>
+                Raster Preview
+            </h3>
+
+            <span>
+                Normalized 0–1
+            </span>
+
+        </div>
+
+
+        <div class="preview-box">
+
+            <div
+                id="previewLoading"
+                class="preview-loading"
+                style="display:none;"
+            >
+                Creating preview...
+            </div>
+
+            <img
+                id="previewImage"
+                alt="Normalized raster preview"
+            >
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Information -->
+
+    <div class="result-info">
+
+        <div>
+
+            <span>
+                Method
+            </span>
+
+            <strong>
+                Min-Max
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                Output Range
+            </span>
+
+            <strong>
+                0 — 1
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                Main Format
+            </span>
+
+            <strong>
+                GeoTIFF
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Export buttons -->
+
+    <div class="export-section">
+
+        <div class="export-title">
+            Export normalized raster
+        </div>
+
+
+        <div class="export-buttons">
+
+            <button
+                type="button"
+                class="export-button primary-export"
+                id="downloadButton"
+            >
+                Download GeoTIFF
+            </button>
+
+
+            <button
+                type="button"
+                class="export-button"
+                id="downloadJpgButton"
+            >
+                Download JPG
+            </button>
+
+
+            <button
+                type="button"
+                class="export-button"
+                id="downloadPdfButton"
+            >
+                Download PDF
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+====================================================== -->
+
+<section
+    class="about-section"
+    id="about"
+>
+
+    <div class="section-number">
+        ABOUT
+    </div>
+
+    <h2>
+        Simple raster normalization.
+    </h2>
+
+    <p>
+        Raster Normalizer is a lightweight tool for
+        converting raster values into a standardized
+        0–1 range. GeoTIFF remains the main analytical
+        output, while JPG and PDF are provided for
+        quick visualization, sharing and presentation.
+    </p>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <div>
+        RasterNormalizer
+    </div>
+
+    <span>
+        Mahmud Ahamedi Nizad
+    </span>
+
+</footer>
+
+
+<script
+    src="script.js"
+></script>
+
+</body>
+
+</html>
